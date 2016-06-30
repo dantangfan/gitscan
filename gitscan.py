@@ -44,7 +44,6 @@ def emails():
             pass
         print "searching on the page "+page+",please wait..."
         for url in urllist[2:12]:
-            print url
             try:
                 htmlDetail = getHtmlSummary("https://github.com"+url)
                 reg_emails1 = re.compile('[\w!#$%&\'*+/=?^_`{|}~-]+(?:\.[\w!#$%&\'*+/=?^_`{|}~-]+)*'+'@(?:[\w](?:[\w-]*[\w])?\.)'+'[\w](?:[\w-]*[\w])?')
@@ -59,12 +58,11 @@ def emails():
     for item in mails:
         domain = item.split('@',1)[1]
         if domain in domains:
+            print "get one %s" % item
             res.append(item)
     if res:
-        print res
         with open('mail_harvest.txt', 'w') as f:
             for r in res:
-                print r
                 f.write(r + '\n')
 
 
